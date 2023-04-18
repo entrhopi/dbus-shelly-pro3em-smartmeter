@@ -16,14 +16,14 @@ This project is my first on GitHub and with the Victron Venus OS, so I took some
 
 ## How it works
 ### My setup
-- Shelly 3EM with latest firmware (20220209-094824/v1.11.8-g8c7bb8d)
+- Shelly Pro 3EM with latest firmwar
   - 3-Phase installation (normal for Germany)
-  - Connected to Wifi netowrk "A"
-  - IP 192.168.2.13/24  
-- Victron Energy Cerbo GX with Venus OS - Firmware v2.93
-  - No other devices from Victron connected (still waiting for shipment of Multiplus-2)
-  - Connected to Wifi netowrk "A"
-  - IP 192.168.2.20/24
+  - Connected to LAN Network "A"
+  - IP 172.16.3.251/24  
+- Victron Energy Multiplus 2 with Venus OS
+  - No other devices from Victron connected
+  - Connected to LAN Network "A"
+  - IP 192.168.3.50/24
 
 ### Details / Process
 As mentioned above the script is inspired by @RalfZim fronius smartmeter implementation.
@@ -78,13 +78,6 @@ Within the project there is a file `/data/dbus-shelly-3em-smartmeter/config.ini`
 | ONPREMISE  | Host | IP or hostname of on-premise Shelly 3EM web-interface |
 | ONPREMISE  | Username | Username for htaccess login - leave blank if no username/password required |
 | ONPREMISE  | Password | Password for htaccess login - leave blank if no username/password required |
-| ONPREMISE  | L1Position | Which input on the Shelly in 3-phase grid is supplying a single Multi |
-
-
-### Remapping L1
-In a 3-phase grid with a single Multi, Venus OS expects L1 to be supplying the only Multi. This is not always the case. If for example your Multi is supplied by L3 (Input `C` on the Shelly) your GX device will show AC Loads as consuming from both L1 and L3. Setting `L1Position` to the appropriate Shelly input allows for remapping the phases and showing correct data on the GX device.
-
-If your single Multi is connected to the Input `A` on the Shelly you don't need to change this setting. Setting `L1Position` to `2` would swap the `B` CT & Voltage sensors data on the Shelly with the `A` CT & Voltage sensors data on the Shelly. Respectively, setting `L1Position` to `3` would swap `A` and `C` inputs.
 
 ## Used documentation
 - https://github.com/victronenergy/venus/wiki/dbus#grid   DBus paths for Victron namespace GRID
