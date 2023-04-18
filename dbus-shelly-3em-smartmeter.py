@@ -83,10 +83,10 @@ class DbusShelly3emService:
   def _getShellySerial(self):
     meter_data = self._getShellyData()  
     
-    if not meter_data['mac']:
+    if not meter_data['sys']['mac']:
         raise ValueError("Response does not contain 'mac' attribute")
     
-    serial = meter_data['mac']
+    serial = meter_data['sys']['mac']
     return serial
  
  
