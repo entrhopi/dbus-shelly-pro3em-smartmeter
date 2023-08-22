@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Installed project files
+config.ini
+service/service
+service/supervise
+service/supervise/*
