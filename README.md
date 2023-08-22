@@ -34,6 +34,7 @@ opkg update
 opkg install git
 git clone https://github.com/entrhopi/dbus-shelly-pro3em-smartmeter.git /data/dbus-shelly-pro3em-smartmeter
 /data/dbus-shelly-pro3em-smartmeter/install.sh
+cp /data/dbus-shelly-pro3em-smartmeter/config.ini.example /data/dbus-shelly-pro3em-smartmeter/config.ini
 ```
 ⚠️ Check configuration after that - because service is already installed an running and with wrong connection data (host, username, pwd) you will spam the log-file
 
