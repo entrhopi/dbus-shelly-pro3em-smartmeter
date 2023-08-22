@@ -1,51 +1,27 @@
-# dbus-shelly-3em-smartmeter
-Integrate Shelly 3EM smart meter into [Victron Energies Venus OS](https://github.com/victronenergy/venus)
+# dbus-shelly-pro3em-smartmeter
+Integrate Shelly Pro 3EM smart meter into [Victron Energies Venus OS](https://github.com/victronenergy/venus)
 
 ## Purpose
-With the scripts in this repo it should be easy possible to install, uninstall, restart a service that connects the Shelly 3EM to the VenusOS and GX devices from Victron.
-Idea is pasend on @RalfZim project linked below.
+With the scripts in this repo it should be easy possible to install, uninstall, restart a service that connects the Shelly Pro 3EM to the VenusOS and GX devices from Victron.
 
-
-
-## Inspiration
-This project is my first on GitHub and with the Victron Venus OS, so I took some ideas and approaches from the following projects - many thanks for sharing the knowledge:
+## References
+- https://github.com/LukasPeer/dbus-shelly-pro3em-smartmeter (original fork for the Pro 3EM)
 - https://github.com/RalfZim/venus.dbus-fronius-smartmeter
 - https://github.com/victronenergy/dbus-smappee
 - https://github.com/Louisvdw/dbus-serialbattery
 - https://community.victronenergy.com/idea/114716/power-meter-lib-for-modbus-rtu-based-meters-from-a.html - [Old Thread](https://community.victronenergy.com/questions/85564/eastron-sdm630-modbus-energy-meter-community-editi.html)
 
 ## How it works
-### My setup
-- Shelly Pro 3EM with latest firmwar
-  - 3-Phase installation (normal for Germany)
-  - Connected to LAN Network "A"
-  - IP 172.16.3.251/24  
-- Victron Energy Multiplus 2 with Venus OS
-  - No other devices from Victron connected
-  - Connected to LAN Network "A"
-  - IP 192.168.3.50/24
-
-### Details / Process
 As mentioned above the script is inspired by @RalfZim fronius smartmeter implementation.
 So what is the script doing:
 - Running as a service
 - connecting to DBus of the Venus OS `com.victronenergy.grid.http_40` or `com.victronenergy.pvinverter.http_40`
-- After successful DBus connection Shelly 3EM is accessed via REST-API - simply the /status is called and a JSON is returned with all details
-  A sample JSON file from Shelly 3EM can be found [here](docs/shelly3em-status-sample.json)
+- After successful DBus connection Shelly Pro 3EM is accessed via REST-API - simply the `/rpc/Shelly.GetStatus` is called and a JSON is returned with all details
 - Serial/MAC is taken from the response as device serial
 - Paths are added to the DBus with default value 0 - including some settings like name, etc
-- After that a "loop" is started which pulls Shelly 3EM data every 750ms from the REST-API and updates the values in the DBus
+- After that a "loop" is started which pulls Shelly Pro 3EM data every 750ms from the REST-API and updates the values in the DBus
 
 Thats it 😄
-
-### Pictures
-![Tile Overview](img/venus-os-tile-overview.PNG)
-![Remote Console - Overview](img/venus-os-remote-console-overview.PNG) 
-![SmartMeter - Values](img/venus-os-shelly3em-smartmeter.PNG)
-![SmartMeter - Device Details](img/venus-os-shelly3em-smartmeter-devicedetails.PNG)
-
-
-
 
 ## Install & Configuration
 ### Get the code
@@ -74,7 +50,7 @@ Within the project there is a file `/data/dbus-shelly-pro3em-smartmeter/config.i
 | DEFAULT  | Position | Available Postions: 0 = AC, 1 = AC-Out 1, AC-Out 2 |
 | DEFAULT  | LogLevel  | Define the level of logging - lookup: https://docs.python.org/3/library/logging.html#levels |
 | ONPREMISE  | Host | IP or hostname of on-premise Shelly 3EM web-interface |
-| ONPREMISE  | Username | Username for htaccess login - leave blank if no username/password required |
+| ONPREMISE  | Username | Username for htaccess login - leave blank if no username/password required - `admin` if password is set |
 | ONPREMISE  | Password | Password for htaccess login - leave blank if no username/password required |
 
 ## Used documentation
