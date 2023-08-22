@@ -49,22 +49,20 @@ Thats it 😄
 
 ## Install & Configuration
 ### Get the code
-Just grap a copy of the main branche and copy them to `/data/dbus-shelly-3em-smartmeter`.
+Just grap a copy of the main branche and copy them to `/data/dbus-shelly-pro3em-smartmeter`.
 After that call the install.sh script.
 
 The following script should do everything for you:
 ```
-wget https://github.com/LukasPeer/dbus-shelly-pro3em-smartmeter/archive/refs/heads/main.zip
-unzip main.zip "dbus-shelly-pro3em-smartmeter-main/*" -d /data
-mv /data/dbus-shelly-pro3em-smartmeter-main /data/dbus-shelly-pro3em-smartmeter
-chmod a+x /data/dbus-shelly-pro3em-smartmeter/install.sh
+opkg update
+opkg install git
+git clone https://github.com/entrhopi/dbus-shelly-pro3em-smartmeter.git /data/dbus-shelly-pro3em-smartmeter
 /data/dbus-shelly-pro3em-smartmeter/install.sh
-rm main.zip
 ```
 ⚠️ Check configuration after that - because service is already installed an running and with wrong connection data (host, username, pwd) you will spam the log-file
 
 ### Change config.ini
-Within the project there is a file `/data/dbus-shelly-3em-smartmeter/config.ini` - just change the values - most important is the host, username and password in section "ONPREMISE". More details below:
+Within the project there is a file `/data/dbus-shelly-pro3em-smartmeter/config.ini` - just change the values - most important is the host, username and password in section "ONPREMISE". More details below:
 
 | Section  | Config vlaue | Explanation |
 | ------------- | ------------- | ------------- |
